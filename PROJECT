@@ -1,0 +1,27 @@
+domain: nginx.example.com
+layout:
+- go.kubebuilder.io/v4-alpha
+plugins:
+  deploy-image.go.kubebuilder.io/v1-alpha:
+    resources:
+    - domain: nginx.example.com
+      group: webserver
+      kind: Nginx
+      options:
+        image: nginx:alpine
+      version: v1alpha1
+  manifests.sdk.operatorframework.io/v2: {}
+  scorecard.sdk.operatorframework.io/v2: {}
+projectName: nginx-operator
+repo: github.com/jimmikristensen/nginx-operator
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: nginx.example.com
+  group: webserver
+  kind: Nginx
+  path: github.com/jimmikristensen/nginx-operator/api/v1alpha1
+  version: v1alpha1
+version: "3"
